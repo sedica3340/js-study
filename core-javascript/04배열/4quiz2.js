@@ -14,14 +14,13 @@
 let arr = [];
 let sum = 0;
 let input = 0;
-for(let i = 1; true; i++) {
+for(let i = 1; i <= 6; i++) {
     input = prompt('숫자를 입력해주세요 \'그만\'을 입력하면 멈춥니다.');
     if (input === '그만') {
         break;
     } else {
         arr.push(+input);
         sum += +input;
-        if (i === 6) break;
     }
 }
 alert(`${arr}, 총합: ${sum}`);
