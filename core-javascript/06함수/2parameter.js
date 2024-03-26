@@ -7,3 +7,28 @@ function sumSum(x, y) {
     return total;
 }
 console.log(sumSum(50,550));
+console.log(`혼자가 아닌 나`);
+
+function sayHello (lang = 'ko') {
+    // if (lang === undefined) {
+        // lang = 'ko';
+    // }
+    // lang = lang || 'ko';
+    switch (lang) {
+        case 'ko' :
+            console.log('안녕하세요');
+            break;
+        case 'eng' :
+            console.log('Hello');
+            break;
+        case 'chin' :
+            console.log('따자하오');
+            break;
+        case 'jap' :
+            console.log('곤니찌와');
+            break;
+        default : 
+            console.log('ㄹㅇㅋㅋ');
+    }
+}
+sayHello();
