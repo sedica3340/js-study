@@ -36,3 +36,9 @@ let articles = {
         },
     ],
 };
+articles.articleList[2].content;
+
+
+for(let i of articles.articleList) {
+    console.log(i.writer);
+}
