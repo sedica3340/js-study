@@ -9,15 +9,15 @@
 4. 전체멤버를 정확하게 삭제할때까지 프로그램은 계속되어야 합니다.
 */
 
-let tvxq = ['유노윤호', '최강창민', '영웅재중', '믹키유천', '시아준수'];
-let input = '';
+let tvxq = ["유노윤호", "최강창민", "영웅재중", "믹키유천", "시아준수"];
+let input = "";
 for (let i = 1; i <= 5; i++) {
     input = prompt(`현재 멤버 : ${tvxq} \n삭제할 멤버를 입력해주세요.`);
-    if (!(tvxq.includes(input))) {
+    if (!tvxq.includes(input)) {
         alert(`${input}은(는) 잘못된 이름입니다.`);
         i--;
     } else {
         tvxq.splice(tvxq.indexOf(input), 1);
     }
 }
-alert('당신은 끝끝내 모든 멤버를 제거했습니다.');
+alert("당신은 끝끝내 모든 멤버를 제거했습니다.");
