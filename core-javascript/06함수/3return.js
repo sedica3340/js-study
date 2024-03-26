@@ -4,4 +4,5 @@ function add(n1, n2) {
 }
 
 // 반환값(return): 함수 호출부로 함수의 결과값을 전달해주는 것
+// return은 함수의 탈출문(종료문)이다..!ㄴㄴ
 console.log(add(10, 20) * add(add(1, add(1, add(1, add(1, 1)))), add(1, 1)));
