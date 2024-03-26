@@ -1,4 +1,7 @@
 // x 부터 y까지의 누적 합을 구해야 함
+let makeLine = function() {
+    console.log('=============================================================');
+}
 function sumSum(x, y) {
     let total = 0;
     for (let i = x; i <= y; i++) {
@@ -32,3 +35,14 @@ function sayHello (lang = 'ko') {
     }
 }
 sayHello();
+
+makeLine();
+function selectRandomPet() {
+    let pets = ['멈뭄미', '먀몸미', '잭잭이', '고라니', '노루궁뎅이버섯'];
+    let rn = Math.floor(Math.random() * pets.length);
+    return pets[rn];
+}
+
+console.log(selectRandomPet());
+console.log(selectRandomPet());
+console.log(selectRandomPet());
