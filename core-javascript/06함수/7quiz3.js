@@ -23,6 +23,7 @@ function isEven(n) {
 
 var result3 = isEven(3);
 
+console.log(`result3: ${result3}`);
 
 // 하나만들어봄.
 function min(...numArr) {
@@ -30,4 +31,3 @@ function min(...numArr) {
 }
 let result4 = min(115235,5123,70,90,12312,12534523,123213);
 console.log(`result4: ${result4}`);
-console.log(`result3: ${result3}`);
