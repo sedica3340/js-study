@@ -50,7 +50,32 @@ const traders = [
         year: 2022,
         value: 780000,
     },
+    {
+        trader: {
+            name: "김철수",
+            city: "대전",
+        },
+        year: 2023,
+        value: 1500000,
+    },
+    {
+        trader: {
+            name: "김철수",
+            city: "대전",
+        },
+        year: 2022,
+        value: 2500000,
+    },
+    {
+        trader: {
+            name: "김철수",
+            city: "대전",
+        },
+        year: 2022,
+        value: 500000,
+    },
 ];
+
 // 연습 1: 2022년에 발생한 모든 거래를 찾아
 //   거래자 정보(이름, 도시)를 배열에 매핑해주세요
 
@@ -102,8 +127,8 @@ traders
 console.log(`거래총액: ${seoulTotal}`);
 makeLine();
 const seoultotal2 = traders
-.filter(trade => trade.trader.city === '서울')
-.reduce((total, trade) => total + trade.value, 0);
+    .filter((trade) => trade.trader.city === "서울")
+    .reduce((total, trade) => total + trade.value, 0);
 console.log(seoultotal2);
 makeLine();
 /*
@@ -190,28 +215,57 @@ makeLine();
 /*
 6. **각 거래자별로 그들이 진행한 거래의 평균 거래액을 계산해주세요. 결과는 `{거래자이름: 평균거래액}` 형태의 객체가 되어야 합니다.**
 */
+const allTradersNameCount = traders.reduce((countingMember, trade) => {
+    if (!(trade.trader.name in countingMember)) {
+        countingMember[trade.trader.name] = 1;
+    } else {
+        countingMember[trade.trader.name]++;
+    }
+    return countingMember;
+}, {});
+// console.log(allTradersNameCount);
+const traderAvgValue = traders.reduce((avgValue, trade) => {
+    if (!(trade.trader.name in avgValue)) {
+        avgValue[trade.trader.name] = trade.value;
+    } else {
+        avgValue[trade.trader.name] += trade.value;
+    }
+    return avgValue;
+}, {});
+const avgResult = {};
+let getValues = 0;
+for (let i = 0; i < Object.keys(traderAvgValue).length; i++) {
+    getValues =
+        Object.values(traderAvgValue)[i] /
+        Object.values(allTradersNameCount)[i];
+    avgResult[Object.keys(traderAvgValue)[i]] = getValues;
+}
+console.log(avgResult);
+makeLine();
+// console.log(traderAvgValue);
 // const traderAvgValue = [];
-// for(let i of allTradersName) {
+// let count = 0;
+// for (let i of allTradersName) {
 //     traderAvgValue.push({});
 // }
-// traders
-// .forEach(trade => {
-//     let count = 0;
+// traders.forEach((trade) => {
 //     let avg = 0;
-//     for(let i of allTradersName) {
-//         let traderCount = 0;
-//         let total = 0;
-//         if(trade.trader.name === i) {
+//     let traderCount = 0;
+//     let total = 0;
+//     for (let i of allTradersName) {
+//         traderCount = 0;
+//         total = 0;
+//         if (trade.trader.name === i) {
 //             traderCount++;
 //             total += trade.value;
 //         }
-//         avg = total / traderCount;
-//         if(avg !== NaN) {
-//         traderAvgValue[count][i] = avg;
-//         }
+//     }
+//     avg = total / traderCount;
+//     if (avg) {
+//         traderAvgValue[count][trade.trader.name] = avg;
 //     }
 //     count++;
-// })
+// });
 // console.log(traderAvgValue);
 // const getValues = [];
 // traders
@@ -230,7 +284,36 @@ makeLine();
 // })
 /*
 7. **2022년과 2023년 각각에서 가장 많은 거래를 한 거래자의 이름과 그 거래 횟수를 출력해주세요.**
+아마도 [y2022 :{거래자:횟수} , y2023 : {거래자:횟수}];
+*/
+const bestTrader = [];
+const trade2022 = traders
+    .filter((trade) => trade.year === 2022)
+    .reduce((countingMember, trade) => {
+        if (!(trade.trader.name in countingMember)) {
+            countingMember[trade.trader.name] = 1;
+        } else {
+            countingMember[trade.trader.name]++;
+        }
+        return countingMember;
+    }, {});
+bestTrader.push({ y2022: trade2022 });
+console.log(trade2022);
+const trade2023 = traders
+    .filter((trade) => trade.year === 2023)
+    .reduce((countingMember, trade) => {
+        if (!(trade.trader.name in countingMember)) {
+            countingMember[trade.trader.name] = 1;
+        } else {
+            countingMember[trade.trader.name]++;
+        }
+        return countingMember;
+    }, {});
+bestTrader.push({ y2023: trade2023 });
+console.log(trade2023);
+console.log(bestTrader);
 
+/*
 8. **모든 거래 중 거래액이 중간값인 거래의 정보(거래자 이름, 도시, 연도, 거래액)를 출력해주세요.**
 
 9. **각 도시에서 진행된 거래의 수를 계산해주세요. 결과는 `{도시이름: 거래수}` 형태의 객체여야 합니다.**
