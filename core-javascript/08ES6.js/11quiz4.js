@@ -101,6 +101,11 @@ traders
     .forEach((i) => (seoulTotal += i));
 console.log(`거래총액: ${seoulTotal}`);
 makeLine();
+const seoultotal2 = traders
+.filter(trade => trade.trader.city === '서울')
+.reduce((total, trade) => total + trade.value, 0);
+console.log(seoultotal2);
+makeLine();
 /*
 1. **2023년에 대전에서 발생한 모든 거래의 총액을 계산해주세요.**
 */
@@ -185,24 +190,29 @@ makeLine();
 /*
 6. **각 거래자별로 그들이 진행한 거래의 평균 거래액을 계산해주세요. 결과는 `{거래자이름: 평균거래액}` 형태의 객체가 되어야 합니다.**
 */
-const traderAvgValue = [];
-for(let i of allTradersName) {
-    traderAvgValue.push({});
-}
-traders
-.map(trade => {
-    let count = 0;
-    for(let i of allTradersName) {
-        let traderCount = 0;
-        let total = 0;
-        if(trade.trader.name === i) {
-            traderCount++;
-            total += trade.value;
-        }
-        let avg = total / traderCount;
-    }
-})
-console.log(traderAvgValue);
+// const traderAvgValue = [];
+// for(let i of allTradersName) {
+//     traderAvgValue.push({});
+// }
+// traders
+// .forEach(trade => {
+//     let count = 0;
+//     let avg = 0;
+//     for(let i of allTradersName) {
+//         let traderCount = 0;
+//         let total = 0;
+//         if(trade.trader.name === i) {
+//             traderCount++;
+//             total += trade.value;
+//         }
+//         avg = total / traderCount;
+//         if(avg !== NaN) {
+//         traderAvgValue[count][i] = avg;
+//         }
+//     }
+//     count++;
+// })
+// console.log(traderAvgValue);
 // const getValues = [];
 // traders
 // .forEach(trade => {
