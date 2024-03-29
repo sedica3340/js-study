@@ -333,7 +333,7 @@ makeLine();
 */
 const totalValue = traders
 .reduce((total, trade) => {
-total += trade.value
+total += trade.value;
 return total;
 }, 0 );
 console.log(totalValue);
