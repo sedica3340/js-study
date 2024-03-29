@@ -286,6 +286,19 @@ makeLine();
 7. **2022년과 2023년 각각에서 가장 많은 거래를 한 거래자의 이름과 그 거래 횟수를 출력해주세요.**
 아마도 [y2022 :{거래자:횟수} , y2023 : {거래자:횟수}];
 */
+function findBestTrader(obj) {
+    let best = 0;
+    for(let key in obj) {
+        if(obj[key] >= best) {
+            best = obj[key];
+        }
+    }
+    for(let key in obj) {
+        if(obj[key] < best) {
+            delete obj[key];
+        }
+    }
+}
 const bestTrader = [];
 const trade2022 = traders
     .filter((trade) => trade.year === 2022)
@@ -297,25 +310,40 @@ const trade2022 = traders
         }
         return countingMember;
     }, {});
-bestTrader.push({ y2022: trade2022 });
-console.log(trade2022);
+// console.log(trade2022);
 const trade2023 = traders
-    .filter((trade) => trade.year === 2023)
-    .reduce((countingMember, trade) => {
-        if (!(trade.trader.name in countingMember)) {
-            countingMember[trade.trader.name] = 1;
-        } else {
-            countingMember[trade.trader.name]++;
-        }
-        return countingMember;
-    }, {});
+.filter((trade) => trade.year === 2023)
+.reduce((countingMember, trade) => {
+    if (!(trade.trader.name in countingMember)) {
+        countingMember[trade.trader.name] = 1;
+    } else {
+        countingMember[trade.trader.name]++;
+    }
+    return countingMember;
+}, {});
+findBestTrader(trade2022);
+findBestTrader(trade2023);
+// console.log(trade2023);
+bestTrader.push({ y2022: trade2022 });
 bestTrader.push({ y2023: trade2023 });
-console.log(trade2023);
 console.log(bestTrader);
-
+makeLine();
 /*
 8. **모든 거래 중 거래액이 중간값인 거래의 정보(거래자 이름, 도시, 연도, 거래액)를 출력해주세요.**
-
+*/
+const totalValue = traders
+.reduce((total, trade) => {
+total += trade.value
+return total;
+}, 0 );
+console.log(totalValue);
+const avgTotalValue = totalValue / Object.keys(traders).length;
+console.log(avgTotalValue);
+let resultTradeIndex = 0;
+traders
+.reduce((acc, trade) => {}, )
+// Math.abs(trade.value - avgTotalValue)
+/*
 9. **각 도시에서 진행된 거래의 수를 계산해주세요. 결과는 `{도시이름: 거래수}` 형태의 객체여야 합니다.**
 
 10. **거래액을 기준으로 모든 거래를 오름차순으로 정렬한 후, 정렬된 리스트를 출력해주세요. 각 거래 정보는 거래자 이름, 도시, 연도, 거래액을 포함해야 합니다.**
