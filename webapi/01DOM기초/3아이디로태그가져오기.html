@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="fruits">
+        <li id="apple" class="f-item">사과</li>
+        <li id="banana" class="f-item">바나나</li>
+        <li id="grape" class="f-item">포도</li>
+        <li id="peach" class="f-item">복숭아</li>
+    </ul>
+    <script>
+        const $apple = document.getElementById('apple');
+        console.log($apple);
+        $apple.textContent = '사과과!';
+        $apple.pet = '사과해라애송이';
+        const $peach = document.getElementById('peach');
+        $peach.style['font-style'] = 'italic';
+        $peach.style['color'] = 'pink';
+
+        const $grape = document.getElementById('grape');
+        $grape.style['background-color'] = 'violet';
+        $grape.style['display'] = 'inline-block';
+        $grape.style['width'] = '300px';
+        $grape.style['height'] = '200px';
+        $grape.style['text-align'] = 'center';
+        $grape.style['line-height'] = '200px';
+        $grape.style['font-size'] = '40px';
+    </script>
+</body>
+</html>

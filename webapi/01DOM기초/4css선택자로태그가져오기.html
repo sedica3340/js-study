@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="fruits">
+        <li class="f-item ap">사과</li>
+        <li class="f-item bn">바나나</li>
+        <li id="grape" class="f-item gp">포도</li>
+        <li class="f-item pc">복숭아</li>
+    </ul>
+    <script>
+        // const $grape = document.querySelector('.gp');
+        // const $grape = document.querySelector('#fruits li:nth-child(3)');
+        // const $grape = document.querySelector('.bn + li');
+        const $grape = document.querySelector('#grape');
+        // console.log($grape);
+        // $grape.textContent = '으르르르릉 컹컹 왈왈';
+        const $fItemList = [...document.querySelectorAll('.f-item')];
+        for(let i of $fItemList) {
+            if(i.textContent === '사과') {
+                i.style.color = 'red';
+            } else if (i.textContent === '바나나') {
+                i.style.color = 'yellow';
+            } else if (i.textContent === '포도') {
+                i.style.color = '#f0f';
+            } else if (i.textContent === '복숭아') {
+                i.style.color = 'violet';
+            }
+        }
+        // $fItemList.forEach(i => {
+            // i.style.color = 'blue';
+        // });
+        // const foods = {
+        //     0: '짜장면',
+        //     1: '짬뽕',
+        //     2: '볶음밥',
+        //     length: 3,
+        //     age: 30,
+        // }
+    </script>
+</body>
+</html>
