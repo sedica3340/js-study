@@ -17,12 +17,13 @@ console.log("==================================");
 // createCalculator를 호출하면 반환되는 헬퍼함수는
 // 3가지의 기능을 갖고 있는데
 const createCalculator = () => {
-    let count = 0;
+    let value = 0;
     return{
-        add: (n) => count += n,
-        subtract: (n) => count -= n,
-        multi: (n) => count *= n,
-        getTotal: () => count,
+        add: (n) => value += n,
+        subtract: (n) => value -= n,
+        multi: (n) => value *= n,
+        getTotal: () => value,
+        reset: () => value = 0,
     }
 }
 
@@ -34,3 +35,4 @@ console.log(calculator.add(21)); // 38
 console.log(calculator.subtract(29)); // 9
 console.log(calculator.multi(3)); // 27
 console.log(calculator.getTotal()); // 27
+console.log(calculator.reset()); // 0

@@ -1,19 +1,19 @@
-/*const increase = (() => {
-    let count = 0;
-    return () => ++count;
-})();
-const decrease = (() => {
-    let count = 0;
-    return () => --count;
-})();
+// const increase = (() => {
+//     let count = 0;
+//     return () => ++count;
+// })();
+// const decrease = (() => {
+//     let count = 0;
+//     return () => --count;
+// })();
 
-console.log(increase());
-console.log(increase());
-console.log(increase());
-console.log(increase());
-console.log(decrease());
-console.log(decrease());
-*/
+// console.log(increase());
+// console.log(increase());
+// console.log(increase());
+// console.log(increase());
+// console.log(decrease());
+// console.log(decrease());
+
 // const countClosure = () => {
 //     let count = 0;
 //     const increase = () => {
@@ -27,6 +27,7 @@ console.log(decrease());
 //         decrease: decrease,
 //     }
 // }
+
 const { increase, decrease } = (() => {
     let count = 0;
     return {
@@ -34,9 +35,11 @@ const { increase, decrease } = (() => {
         decrease: () => --count,
     };
 })();
-console.log(increase());
-console.log(increase());
-console.log(increase());
-console.log(increase());
-console.log(decrease());
-console.log(decrease());
+console.log(increase());//1
+console.log(increase());//2
+console.log(increase());//3
+console.log(increase());//4
+console.log(decrease());//3
+console.log(decrease());//2
+
+
