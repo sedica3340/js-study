@@ -359,11 +359,12 @@ console.log(middleTradeInfo);
 9. **각 도시에서 진행된 거래의 수를 계산해주세요. 결과는 `{도시이름: 거래수}` 형태의 객체여야 합니다.**
 */
 const tradeCountByCity = traders
-.reduce((acc, trade) => {
-    if(!acc[trade.trader.city]) {
-        acc[trade.trader.city] = 1;
+.reduce((acc, {trader}) => {
+    const {city} = trader;
+    if(!acc[city]) {
+        acc[city] = 1;
     } else {
-        acc[trade.trader.city]++;
+        acc[city]++;
     }
     return acc;
 }, {})
