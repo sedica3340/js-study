@@ -331,21 +331,46 @@ makeLine();
 /*
 8. **모든 거래 중 거래액이 중간값인 거래의 정보(거래자 이름, 도시, 연도, 거래액)를 출력해주세요.**
 */
-const totalValue = traders
-.reduce((total, trade) => {
-total += trade.value;
-return total;
-}, 0 );
-console.log(totalValue);
-const avgTotalValue = totalValue / Object.keys(traders).length;
-console.log(avgTotalValue);
-let resultTradeIndex = 0;
-traders
-.reduce((acc, trade) => {}, )
+const sortedTraders = traders.slice().sort((a, b) => a.value - b.value);
+console.log(sortedTraders);
+
+const middleIndex = Math.floor(sortedTraders.length / 2);
+
+let middleTradeInfo;
+if (sortedTraders.length % 2 === 1) {
+   middleTradeInfo = sortedTraders[middleIndex];
+} else {
+    middleTradeIfo = [sortedTraders[middleIndex - 1], sortedTraders[middleIndex]];
+}
+console.log(middleTradeInfo);
+// const totalValue = traders
+// .reduce((total, trade) => {
+// total += trade.value;
+// return total;
+// }, 0 );
+// console.log(totalValue);
+// const avgTotalValue = totalValue / Object.keys(traders).length;
+// console.log(avgTotalValue);
+// let resultTradeIndex = 0;
+// traders
+// .reduce((acc, trade) => {}, )
 // Math.abs(trade.value - avgTotalValue)
 /*
 9. **각 도시에서 진행된 거래의 수를 계산해주세요. 결과는 `{도시이름: 거래수}` 형태의 객체여야 합니다.**
-
-10. **거래액을 기준으로 모든 거래를 오름차순으로 정렬한 후, 정렬된 리스트를 출력해주세요. 각 거래 정보는 거래자 이름, 도시, 연도, 거래액을 포함해야 합니다.**
-
 */
+const tradeCountByCity = traders
+.reduce((acc, trade) => {
+    if(!acc[trade.trader.city]) {
+        acc[trade.trader.city] = 1;
+    } else {
+        acc[trade.trader.city]++;
+    }
+    return acc;
+}, {})
+console.log(tradeCountByCity);
+/*
+10. **거래액을 기준으로 모든 거래를 오름차순으로 정렬한 후, 정렬된 리스트를 출력해주세요. 각 거래 정보는 거래자 이름, 도시, 연도, 거래액을 포함해야 합니다.**
+*/
+makeLine();
+const sortedTraders2 = traders.slice().sort((a, b) => a.value - b.value);
+console.log(sortedTraders2);
