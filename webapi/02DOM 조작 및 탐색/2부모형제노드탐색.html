@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="wrap">
+            <ul id="fruits">
+                <li class="fr apple">사과</li>
+                <li class="fr banana">바나나</li>
+                <li class="fr dragon">용과</li>
+            </ul>
+        </div>
+
+        <div id="wrapper">
+            <section class="contents">
+                <ul class="list">
+                    <li class="item"><a href="#" class="link">10</a></li>
+                    <li class="item"><a href="#" class="link active">20</a></li>
+                    <li class="item"><a href="#" class="link">30</a></li>
+                </ul>
+                <ul class="list">
+                    <li class="item"><a href="#" class="link">40</a></li>
+                    <li class="item"><a href="#" class="link">50</a></li>
+                    <li class="item"><a href="#" class="link">60</a></li>
+                </ul>
+            </section>
+        </div>
+        <script>
+            const $ul = document.querySelector("#fruits");
+            const $wrap = $ul.parentElement;
+            $wrap.style.background = "orange";
+            $wrap.style.padding = "10px";
+            $wrap.style.margin = "10px";
+            const [$apple, $banana, $dragon] = [
+                ...$wrap.firstElementChild.children,
+            ];
+            $dragon.style.color = "#f0b";
+            $banana.style.color = "#ffa";
+            $apple.style.color = "#f00";
+
+            console.log($banana.nextElementSibling === $dragon);
+            console.log(
+                $apple.nextElementSibling.nextElementSibling === $dragon
+            );
+
+            const $active = document.querySelector(".active");
+            const $li60 =
+            $active.closest('section.contents').querySelector('ul.list:last-child li.item:last-child a.link');
+                // $active.parentElement.parentElement.parentElement
+                //     .lastElementChild.lastElementChild.firstElementChild;
+            console.log($li60);
+
+            //기준태그로부터 위로 올라가면서 탐색하는 함수
+            //closest('css selector');
+        </script>
+    </body>
+</html>

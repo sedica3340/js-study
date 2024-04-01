@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>몬가..몬가임..</title>
+        <style>
+            span {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="greet">Hello <span class="highlight">World!</span></div>
+
+        <ul id="food-list">
+            <li class="food">짜장면</li>
+            <li class="food">파스타</li>
+            <li class="food">볶음밥</li>
+        </ul>
+
+        <script>
+            const $greet = document.querySelector("#greet");
+            console.log($greet.textContent);
+            // $greet.textContent = '안녕 <span class="highlight">자바스크립트!</span>';
+            $greet.innerHTML =
+                '안녕 <span class="highlight">자바스크립트!</span>';
+            $greet.firstElementChild.textContent = "javascript";
+            const $foodList = document.querySelector('#food-list');
+            // $foodList.innerHTML = '<div>메롱</div>';
+            $foodList.innerHTML += '<li class="food">잠봉뵈르</li>'
+        </script>
+    </body>
+</html>
