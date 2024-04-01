@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #controler {
+                display: block;
+            }
+            #content {
+                /* background: orange; */
+                min-height: 400px;
+                height: fit-content;
+                font-size: inherit;
+                font-weight: 700;
+            }
+        </style>
+    </head>
+    <body>
+        <input
+            type="text"
+            id="controler"
+            placeholder="글자 크기를 픽셀 단위로 입력해주세요."
+        />
+        <div id="content">여기 있는 텍스트 크기를 조정해보세요</div>
+        <script>
+            const $controler = document.querySelector("#controler");
+            const $content = document.querySelector("#content");
+            $controler.addEventListener("change", () => {
+                let value = +$controler.value;
+                $content.style.fontSize = `${value}px`;
+            });
+        </script>
+    </body>
+</html>
