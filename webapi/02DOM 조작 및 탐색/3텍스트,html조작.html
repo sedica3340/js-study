@@ -29,6 +29,13 @@
             const $foodList = document.querySelector('#food-list');
             // $foodList.innerHTML = '<div>메롱</div>';
             $foodList.innerHTML += '<li class="food">잠봉뵈르</li>'
+            //자식태그 일괄삭제
+            $foodList.innerHTML = '';
+            const foods = ['연어회', '고등어찜', '오렌지', '딸기'];
+            foods.forEach(f => {
+                $foodList.innerHTML += 
+                `<li class="food">${f}</li>`;
+            });
         </script>
     </body>
 </html>

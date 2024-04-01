@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>부대찌개</title>
+        <style>
+            .box {
+                width: 300px;
+                height: 300px;
+                background: orange;
+                font-size: 60px;
+                color: red;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /* transition: 20s; */
+            }
+            .green {
+                color: greenyellow;
+                background: green;
+            }
+            .blue {
+                color: aqua;
+                background: blue;
+            }
+            .circle {
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box green" style="font-weight: 700">Hello</div>
+
+        <button id="add">변환</button>
+        <script>
+            const $box = document.querySelector(".box");
+            const $btn = document.querySelector("#add");
+
+            $box.style.fontStyle = "italic";
+
+            // 클래스 조작
+            // $box.className = 'box blue circle';
+
+            // 클래스 추가하기
+            $box.classList.add("circle", "blue");
+            $box.classList.remove("green", "blue");
+            $box.classList.add("green");
+
+            // 클래스 교체하기
+            $box.classList.replace("green", "blue");
+
+            // 클래스 존재유무 확인
+            console.log($box.classList.contains("blue"));
+            $btn.addEventListener("click", () => {
+                const CLASS_NAME = "circle";
+                const boxClassList = $box.classList;
+                boxClassList.toggle(CLASS_NAME);
+
+                // if($box.classList.contains(CLASS_NAME)) {
+                //     $box.classList.remove(CLASS_NAME);
+                // } else $box.classList.add(CLASS_NAME);
+            });
+        </script>
+    </body>
+</html>
