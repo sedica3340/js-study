@@ -132,6 +132,20 @@
                 $mainBox.classList.remove("two", "three", "one");
                 $mainBox.classList.add("four");
             });
+            const autoTurn = () => {
+                if ($mainBox.classList.contains("one")) {
+                    $mainBox.classList.replace("one", "two");
+                } else if ($mainBox.classList.contains("two")) {
+                    $mainBox.classList.replace("two", "three");
+                } else if ($mainBox.classList.contains("three")) {
+                    $mainBox.classList.replace("three", "four");
+                } else if ($mainBox.classList.contains("four")) {
+                    $mainBox.classList.replace("four", "one");
+                }
+            };
+            const $body = document.body;
+            let slider = setInterval(autoTurn, 3000);
+            
         </script>
     </body>
 </html>
