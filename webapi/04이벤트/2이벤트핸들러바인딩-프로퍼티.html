@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style></style>
+    </head>
+    <body>
+        <div><button id="b1">click1</button></div>
+        <div><button id="b2">click2</button></div>
+        <div><button id="b3">click3</button></div>
+        <script>
+            //이벤트핸들러 함수를 하나 만들자
+            function sayHelloHandler() {
+                alert("Hello!");
+            }
+            const $b1 = document.querySelector("#b1");
+            $b1.onclick = sayHelloHandler;
+            const $b2 = document.querySelector("#b2");
+            $b2.onmouseover = () => {
+                $b2.style.width = "150px";
+            };
+            $b2.onmouseleave = () => {
+                $b2.style.width = "auto";
+            };
+            const $b3 = document.querySelector("#b3");
+            $b3.onmouseover = () => {
+                b3.style.background = "red";
+            };
+            $b3.onmouseleave = () => {
+                b3.style.background = "yellow";
+                sayHelloHandler();
+            };
+            // 프로퍼티 방식의 단점: 같은 타입의 이벤트에는 여러 핸들러를 바인딩 할 수 없음..!
+            // 함수를 합치면 되는것 아닌가..?
+
+            //이벤트 핸들러 제거
+            setTimeout(() => {
+                // alert('메롱');
+                $b3.onmouseleave = null;
+            }, 2000);
+            // $b3.onmouseleave = null;
+        </script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style></style>
+    </head>
+    <body>
+        <button id="btn">버튼입니다..!</button>
+        <script>
+            const $btn = document.querySelector("#btn");
+
+            //이벤트 핸들러
+            const helloHandler = () => {
+                alert("안녕??");
+            };
+            // $btn.onclick = helloHandler;
+
+            $btn.addEventListener("click", helloHandler);
+            $btn.addEventListener("click", () => {
+                $btn.style.background = "aqua";
+            });
+            // 기존 핸들러를 지우고 싶으면 수동으로 지워야 함
+            // 수동으로 지울때는 함수의 이름이 꼭 있어야 함 익명함수는 지울 수 없음
+            $btn.removeEventListener('click', helloHandler);
+
+        </script>
+    </body>
+</html>
