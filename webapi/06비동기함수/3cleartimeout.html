@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button id="start">시작</button>
+        <button id="cancel">취소</button>
+        <p class="msg"></p>
+
+        <script>
+            const $start = document.querySelector("#start");
+            const $cancel = document.querySelector("#cancel");
+            const $msg = document.querySelector(".msg");
+            let timer = null;
+            $start.addEventListener("click", (e) => {
+                if (timer) {
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(() => {
+                    $msg.textContent += "더월드!!!!";
+                    timer = null;
+                }, 2000);
+            });
+            $cancel.addEventListener("click", (e) => {
+                if (timer) {
+                    clearTimeout(timer);
+                    $msg.textContent = "스타플래티나";
+                    timer = null;
+                }
+            });
+        </script>
+    </body>
+</html>
