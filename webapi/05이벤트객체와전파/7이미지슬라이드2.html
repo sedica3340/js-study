@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .wrap {
+                background-color: #ff8342;
+                width: fit-content;
+                height: fit-content;
+                margin: 0 auto;
+            }
+            .content {
+                width: 800px;
+                height: fit-content;
+                min-height: 600px;
+                background: dodgerblue;
+                display: flex;
+            }
+            .content .imgBox {
+                width: 600px;
+                height: 600px;
+                background: #ff0;
+            }
+            .content .imgBox.one {
+                background: url("../images/solar1.jpg") no-repeat;
+                background-size: 100%;
+            }
+            .content .imgBox.two {
+                background: url("../images/solar2.jpg") no-repeat;
+                background-size: 100%;
+            }
+            .content .imgBox.three {
+                background: url("../images/solar3.jpg") no-repeat;
+                background-size: 100%;
+            }
+            .content .imgBox.four {
+                background: url("../images/solar4.jpg") no-repeat;
+                background-size: 100%;
+            }
+            .content .btn {
+                margin: auto 0;
+                background: #f00;
+                width: 100px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                color: #fff;
+                font-size: 20px;
+                font-weight: 700;
+            }
+            .preview {
+                display: flex;
+                width: 600px;
+                height: 150px;
+                margin: 0 auto;
+            }
+            .preImgBox {
+                width: 150px;
+                height: 150px;
+                overflow: hidden;
+            }
+            .preImg {
+                width: 150px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="content">
+                <div class="btn prev">이전</div>
+                <div class="imgBox one"></div>
+                <div class="btn next">다음</div>
+            </div>
+            <nav class="preview">
+                <div class="preImgBox">
+                    <img src="../images/solar1.jpg" alt="1" class="preImg" />
+                </div>
+                <div class="preImgBox">
+                    <img src="../images/solar2.jpg" alt="2" class="preImg" />
+                </div>
+                <div class="preImgBox">
+                    <img src="../images/solar3.jpg" alt="3" class="preImg" />
+                </div>
+                <div class="preImgBox">
+                    <img src="../images/solar4.jpg" alt="4" class="preImg" />
+                </div>
+            </nav>
+        </div>
+        <script>
+            const $mainBox = document.querySelector(".content .imgBox");
+            const $prev = document.querySelector(".content .btn.prev");
+            const $next = document.querySelector(".content .btn.next");
+            const $preview = document.querySelector(".preview");
+            const $preImgBoxs = document.querySelectorAll(
+                ".preview .preImgBox"
+            );
+            const [$pre1, $pre2, $pre3, $pre4] = [...$preImgBoxs];
+            $next.addEventListener("click", () => {
+                if ($mainBox.classList.contains("one")) {
+                    $mainBox.classList.replace("one", "two");
+                } else if ($mainBox.classList.contains("two")) {
+                    $mainBox.classList.replace("two", "three");
+                } else if ($mainBox.classList.contains("three")) {
+                    $mainBox.classList.replace("three", "four");
+                } else if ($mainBox.classList.contains("four")) {
+                    $mainBox.classList.replace("four", "one");
+                }
+            });
+            $prev.addEventListener("click", () => {
+                if ($mainBox.classList.contains("one")) {
+                    $mainBox.classList.replace("one", "four");
+                } else if ($mainBox.classList.contains("two")) {
+                    $mainBox.classList.replace("two", "one");
+                } else if ($mainBox.classList.contains("three")) {
+                    $mainBox.classList.replace("three", "two");
+                } else if ($mainBox.classList.contains("four")) {
+                    $mainBox.classList.replace("four", "three");
+                }
+            });
+            // $pre1.addEventListener("click", () => {
+            //     $mainBox.classList.remove("two", "three", "four");
+            //     $mainBox.classList.add("one");
+            // });
+            // $pre2.addEventListener("click", () => {
+            //     $mainBox.classList.remove("one", "three", "four");
+            //     $mainBox.classList.add("two");
+            // });
+            // $pre3.addEventListener("click", () => {
+            //     $mainBox.classList.remove("two", "one", "four");
+            //     $mainBox.classList.add("three");
+            // });
+            // $pre4.addEventListener("click", () => {
+            //     $mainBox.classList.remove("two", "three", "one");
+            //     $mainBox.classList.add("four");
+            // });
+            $preview.addEventListener("click", (e) => {
+                if (e.target === $pre1.children[0]) {
+                    $mainBox.classList.remove("two", "three", "four");
+                    $mainBox.classList.add("one");
+                } else if (e.target === $pre2.children[0]) {
+                    $mainBox.classList.remove("one", "three", "four");
+                    $mainBox.classList.add("two");
+                } else if (e.target === $pre3.children[0]) {
+                    $mainBox.classList.remove("two", "one", "four");
+                    $mainBox.classList.add("three");
+                } else if (e.target === $pre4.children[0]) {
+                    $mainBox.classList.remove("two", "three", "one");
+                    $mainBox.classList.add("four");
+                }
+                // console.log($pre1.children[0]);
+            });
+            const autoTurn = () => {
+                if ($mainBox.classList.contains("one")) {
+                    $mainBox.classList.replace("one", "two");
+                } else if ($mainBox.classList.contains("two")) {
+                    $mainBox.classList.replace("two", "three");
+                } else if ($mainBox.classList.contains("three")) {
+                    $mainBox.classList.replace("three", "four");
+                } else if ($mainBox.classList.contains("four")) {
+                    $mainBox.classList.replace("four", "one");
+                }
+            };
+            const $wrap = document.querySelector(".wrap");
+            let slider;
+            slider = setInterval(autoTurn, 3000);
+            $wrap.addEventListener("click", () => {
+                clearInterval(slider);
+                slider = setInterval(autoTurn, 3000);
+            });
+        </script>
+    </body>
+</html>
+<!-- 
+    currentIndex = (currentIndex + images.length - 1) % imgages.length;
+ -->

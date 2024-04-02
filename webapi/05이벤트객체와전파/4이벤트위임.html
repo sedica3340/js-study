@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #fruits {
+                display: flex;
+                list-style: none;
+                padding: 20px;
+                border: 2px solid red;
+                flex-wrap: wrap;
+            }
+
+            #fruits li {
+                width: 100px;
+                cursor: pointer;
+                background: orange;
+                margin-right: 10px;
+            }
+
+            .active {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="fruits">
+            <li id="apple" class="active">Apple</li>
+            <li id="banana">Banana</li>
+            <li id="grape">Grape</li>
+        </ul>
+
+        <div>
+            선택된 과일: <em class="msg">Apple</em>
+            <button id="remove">현재과일 삭제</button>
+        </div>
+        <label>
+            # 새로운 과일 추가하기:
+            <input type="text" class="text-box" />
+            <button id="add">추가</button>
+        </label>
+        <script>
+            const $fruits = document.querySelector("#fruits");
+            const $msg = document.querySelector(".msg");
+            const $input = document.querySelector(".text-box");
+            const $add = document.querySelector("#add");
+            const $remove = document.querySelector("#remove");
+            $fruits.addEventListener("click", (e) => {
+                const arr = [...$fruits.children];
+/**/
+                //조건부로 이벤트 중단시키기
+                if (!e.target.matches("#fruits li")) return;
+/**/
+                for (let $li of arr) {
+                    $li.classList.remove("active");
+                }
+                e.target.classList.add("active");
+                $msg.textContent = e.target.textContent;
+            });
+            $fruits.addEventListener("dblclick", (e) => {
+                if (!e.target.matches("#fruits li")) return;
+                $fruits.removeChild(e.target);
+                console.log(e.target);
+            });
+            //
+            // function makeNewTag(tagName = "div", options = {}) {
+            //     const $newTag = document.createElement(tagName);
+            //     if (options.text) $newTag.textContent = options.text;
+            //     return $newTag;
+            // }
+            // function append($parent, tagName, options) {
+            //     $parent.appendChild(makeNewTag(tagName, options));
+            // }
+            //
+            $add.addEventListener("click", (e) => {
+                if ($input.value.length !== 0) {
+                    // $fruits.innerHTML += `<li id="${$input.value}">${$input.value}</li>`;
+                    // append($fruits, "li", { text: `${$input.value}` });
+                    const $newTag = document.createElement("li");
+                    $newTag.textContent = `${$input.value}`;
+                    $newTag.setAttribute("id", $input.value.toLowerCase());
+                    $fruits.appendChild($newTag);
+                    $input.value = "";
+                }
+            });
+            $remove.addEventListener("click", (e) => {
+                const arr = [...$fruits.children];
+                for (let $li of arr) {
+                    if ($li.classList.contains("active")) {
+                        $fruits.removeChild($li);
+                        $msg.textContent = "";
+                    }
+                }
+            });
+            //input에 텍스트를 입력하고 엔터를 누르면 추가버튼을 클릭하게 한다.
+            //1. input에 키보드 이벤트를 건다.
+            $input.addEventListener("keyup", (e) => {
+                if (e.key === "Enter") {
+                    $add.click();
+                }
+            });
+        </script>
+    </body>
+</html>
