@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #fruits {
+                padding: 50px;
+                border: 2px solid red;
+            }
+            #fruits li {
+                background: yellow;
+                margin-bottom: 10px;
+            }
+
+            #fruits li:first-child {
+                position: absolute;
+                bottom: 10%;
+                right: 5%;
+            }
+            #fruits li:last-child {
+                position: absolute;
+                bottom: 10%;
+                left: 5%;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="fruits">
+            <li class="apple">Apple</li>
+            <li class="banana">Banana</li>
+            <li class="dragon">Dragon</li>
+        </ul>
+        <script>
+            const $ul = document.querySelector("#fruits");
+
+            const $apple = $ul.firstElementChild;
+            $ul.addEventListener("click", (e) => {
+                console.log("ul클릭");
+                console.log(e.target.className);
+            });
+            $apple.addEventListener("click", (e) => {
+                // e.stopPropagation();
+                console.log("apple클릭");
+            });
+        </script>
+    </body>
+</html>

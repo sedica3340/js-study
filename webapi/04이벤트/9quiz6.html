@@ -144,8 +144,15 @@
                 }
             };
             const $body = document.body;
-            let slider = setInterval(autoTurn, 3000);
-            
+            let slider;
+            slider = setInterval(autoTurn, 3000);
+            $body.addEventListener("click", () => {
+                clearInterval(slider);
+                slider = setInterval(autoTurn, 3000);
+            });
         </script>
     </body>
 </html>
+<!-- 
+    currentIndex = (currentIndex + images.length - 1) % imgages.length;
+ -->
