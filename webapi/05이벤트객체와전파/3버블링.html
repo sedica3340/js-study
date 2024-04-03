@@ -42,12 +42,12 @@
             document.querySelector(".root").onclick = (e) => alert("root");
             document.querySelector(".parent").onclick = (e) => alert("parent");
             document.querySelector(".child").onclick = (e) => {
-                e.stopPropagation();
+                // e.stopPropagation();
                 alert("child");
             };
             document.querySelector(".target").onclick = (e) => {
                 //버블링 방지..!
-                e.stopPropagation();
+                // e.stopPropagation();
                 alert("target");
             };
         </script>

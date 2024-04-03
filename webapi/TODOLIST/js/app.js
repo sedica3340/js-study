@@ -90,17 +90,17 @@ document.querySelector(".todo-template").addEventListener("click", (e) => {
     }
     if (!todos.length) {
         const $ul = document.querySelector(".todo-list");
-        $ul.textContent = "할 일이 없습니다";
+        $ul.textContent = "할일이 그렇게 없습니까?";
         $ul.style.background = "#fbb";
         $ul.style.fontSize = "32px";
         $ul.style.textAlign = "center";
     }
 });
 document.querySelector(".todo-template").addEventListener("click", (e) => {
+    // e.preventDefault();
     // console.log(e.target.parentElement.parentElement.firstElementChild);
     const $label = e.target.parentElement.parentElement.firstElementChild;
     // const $input = e.target.parentElement.parentElement.firstElementChild.firstElementChild;
-    // let newValue = "";
     if (!e.target.matches("div.modify span")) return;
     if (e.target.classList.contains("lnr-undo")) {
         const $span =
@@ -134,7 +134,7 @@ document.querySelector(".todo-template").addEventListener("click", (e) => {
     }
 });
 document.querySelector(".todo-template").addEventListener("change", (e) => {
-    if (!e.target.matches("label.checkbox input")) return;
+    if (!e.target.matches("label.checkbox input[type=checkbox]")) return;
     // console.log(+e.target.parentElement.parentElement.dataset.id);
     const $span = e.target.parentElement.lastElementChild;
     const index = todos.findIndex(

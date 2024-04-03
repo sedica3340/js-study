@@ -50,7 +50,7 @@
             const $remove = document.querySelector("#remove");
             $fruits.addEventListener("click", (e) => {
                 const arr = [...$fruits.children];
-/**/
+/**/            console.log(e.target);
                 //조건부로 이벤트 중단시키기
                 if (!e.target.matches("#fruits li")) return;
 /**/
