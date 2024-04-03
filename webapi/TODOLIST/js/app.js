@@ -1,3 +1,5 @@
+// 수정모드 돌입확인//
+let isEnterEditMode = false;
 //==============서버 통신 데이터=====//
 const todos = [
     {
@@ -103,6 +105,8 @@ document.querySelector(".todo-template").addEventListener("click", (e) => {
     // const $input = e.target.parentElement.parentElement.firstElementChild.firstElementChild;
     if (!e.target.matches("div.modify span")) return;
     if (e.target.classList.contains("lnr-undo")) {
+        if (isEnterEditMode) return;
+        isEnterEditMode = true;
         const $span =
             e.target.parentElement.parentElement.firstElementChild
                 .lastElementChild;
@@ -130,6 +134,7 @@ document.querySelector(".todo-template").addEventListener("click", (e) => {
         $label.replaceChild($newSpan, $newInput);
         e.target.classList.remove("lnr-checkmark-circle");
         e.target.classList.add("lnr-undo");
+        isEnterEditMode = false;
         // $label.replaceChild($span, $newInput);
     }
 });
