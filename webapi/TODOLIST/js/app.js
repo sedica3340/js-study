@@ -21,8 +21,30 @@ const todos = [
 let listCount = 3;
 function addPlan() {
     let value = document.querySelector("#todo-text").value;
-    if (value.length === 0) return;
+    if (value.length === 0) {
+        document
+            .querySelector("#todo-text")
+            .setAttribute("placeholder", "필수 입력 사항입니다.");
+        document.querySelector("#todo-text").parentElement.style.background =
+            "#ff0355";
+        setTimeout(() => {
+            document
+                .querySelector("#todo-text")
+                .setAttribute("placeholder", "할 일을 입력하세요");
+            document.querySelector(
+                "#todo-text"
+            ).parentElement.style.background = "#495057";
+        }, 800);
+        return;
+    }
     listCount++;
+    if (!todos.length) {
+        const $ul = document.querySelector(".todo-list");
+        $ul.textContent = "";
+        $ul.style.background = "#fff";
+        $ul.style.fontSize = "inherit";
+        $ul.style.textAlign = "inherit";
+    }
     const $newLi = document.createElement("li");
     $newLi.dataset.id = `${listCount}`;
     $newLi.classList.add("todo-list-item");
@@ -51,7 +73,7 @@ document.querySelector("#add").addEventListener("click", (e) => {
     e.preventDefault();
     addPlan();
 });
-document.querySelector("#todo-text").addEventListener("keyup", (e) => {
+document.querySelector("#todo-text").addEventListener("change", (e) => {
     e.preventDefault();
     if (e.key === "Enter") document.querySelector("#add").click();
 });
@@ -65,6 +87,13 @@ document.querySelector(".todo-template").addEventListener("click", (e) => {
     );
     if (index !== -1) {
         todos.splice(index, 1);
+    }
+    if (!todos.length) {
+        const $ul = document.querySelector(".todo-list");
+        $ul.textContent = "할 일이 없습니다";
+        $ul.style.background = "#fbb";
+        $ul.style.fontSize = "32px";
+        $ul.style.textAlign = "center";
     }
 });
 document.querySelector(".todo-template").addEventListener("click", (e) => {
@@ -89,7 +118,10 @@ document.querySelector(".todo-template").addEventListener("click", (e) => {
         e.target.classList.remove("lnr-undo");
         e.target.classList.add("lnr-checkmark-circle");
     } else if (e.target.classList.contains("lnr-checkmark-circle")) {
-        const $newInput = document.querySelector(".modi");
+        // console.log(e.target.parentElement.parentElement.firstElementChild.lastElementChild);
+        const $newInput =
+            e.target.parentElement.parentElement.firstElementChild
+                .lastElementChild;
         const value = $newInput.value;
         if (value.length === 0) return;
         const $newSpan = document.createElement("span");
@@ -104,9 +136,32 @@ document.querySelector(".todo-template").addEventListener("click", (e) => {
 document.querySelector(".todo-template").addEventListener("change", (e) => {
     if (!e.target.matches("label.checkbox input")) return;
     // console.log(+e.target.parentElement.parentElement.dataset.id);
+    const $span = e.target.parentElement.lastElementChild;
     const index = todos.findIndex(
         (todo) => todo.id === +e.target.parentElement.parentElement.dataset.id
     );
     todos[index].done = !todos[index].done;
+    // console.log($span);
+    if (todos[index].done) {
+        $span.style.textDecoration = "line-through";
+        $span.style.color = "#888";
+    } else if (!todos[index].done) {
+        $span.style.textDecoration = "";
+        $span.style.color = "inherit";
+    }
     // console.log(index);
 });
+
+setInterval(() => {
+    let complete = 0;
+    let yet = 0;
+    for (let todo of todos) {
+        if (todo.done) complete++;
+        else yet++;
+    }
+
+    document.querySelector(
+        ".counter .complete"
+    ).textContent = `완료된 일정: ${complete}개 `;
+    document.querySelector(".counter .yet").textContent = `남은 일정: ${yet}개`;
+}, 250);

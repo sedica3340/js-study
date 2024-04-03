@@ -16,7 +16,15 @@ input, button {
     padding-top: 64px;
     height: 100vh;
 }
-
+.wrapper .counter {
+    background: #b8cf22;
+    width: 512px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    height: fit-content;
+    border-radius: 5px;
+    font-size: 20px;
+}
 section.todo-template {
     background: tomato;
     width: 512px;
