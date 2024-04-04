@@ -38,6 +38,12 @@ const calculate = (e) => {
     allLog.push(`#${logCount}. ${descriptionLog} = ${currentResult}`);
     const $newLi = document.createElement("li");
     $newLi.textContent = allLog[allLog.length - 1];
-    $newLi.classList.add('log-entries__item');
+    $newLi.classList.add("log-entries__item");
     $logEntries.appendChild($newLi);
 };
+// function fastCalc(e) {
+//     // $userInput.value.substr(0, $userInput.value.length - 1);
+//     if (e.key === "+" || e.key === "-") {
+
+//     }
+// }

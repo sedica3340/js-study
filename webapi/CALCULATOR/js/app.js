@@ -16,3 +16,7 @@ setInterval(() => {
         $logEntries.removeChild($logEntries.firstChild);
     }
 }, 30);
+$userInput.addEventListener('keyup', e => {
+    console.log(e.key);
+    fastCalc(e);
+})
