@@ -21,6 +21,8 @@
 
         <button id="load">서버에서 정보 불러오기</button>
 
+        <ul id="content"></ul>
+
         <script>
             // 버튼 클릭 이벤트
             document.querySelector("#load").addEventListener("click", (e) => {
@@ -30,10 +32,35 @@
                 // 요청 방식과 url을 적음
                 const url = "https://jsonplaceholder.typicode.com";
                 xhr.open("GET", `${url}/users/1/posts`);
-                
+
                 xhr.send();
                 xhr.onload = (e) => {
-                    console.log(xhr.response);
+                    // 서버가 응답한 데이터는 JSON이라는 문자열 포맷의 데이터다.
+                    // JSON은 자바스크립트가 아니다.
+                    // JSON -> JS로 변환해야 함.
+                    // JSON.parse() : JSON -> JS
+                    // JSON.stringify() : JS -> JSON
+                    const response = xhr.response;
+                    const boardList = JSON.parse(response);
+                    console.log(boardList);
+
+                    // boardList
+                    //     .map((b) => b.title.substring(0, 10))
+                    //     .forEach((title) => console.log(title));
+
+                    // 화면렌더링
+                    const $ul = document.querySelector("#content");
+                    let liTag = "";
+
+                    boardList.forEach((b) => {
+                        liTag += `
+                            <li>
+                                #글번호: ${b.id}, #제목: ${b.title}, 작성자id: ${b.userId}
+                            </li>
+                        `;
+
+                        $ul.innerHTML += liTag;
+                    });
                 };
             });
         </script>
