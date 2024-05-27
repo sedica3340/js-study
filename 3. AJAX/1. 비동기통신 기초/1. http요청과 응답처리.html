@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <iframe
+                width="1280"
+                height="720"
+                src="https://www.youtube.com/embed/6DkOiERHi9c"
+                title="건실룬키 2024-05-19"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+            ></iframe>
+        </div>
+
+        <button id="load">서버에서 정보 불러오기</button>
+
+        <script>
+            // 버튼 클릭 이벤트
+            document.querySelector("#load").addEventListener("click", (e) => {
+                // 서버에 비동기 통신 요청을 보내야 함.
+
+                const xhr = new XMLHttpRequest();
+                // 요청 방식과 url을 적음
+                const url = "https://jsonplaceholder.typicode.com";
+                xhr.open("GET", `${url}/users/1/posts`);
+                
+                xhr.send();
+                xhr.onload = (e) => {
+                    console.log(xhr.response);
+                };
+            });
+        </script>
+    </body>
+</html>
