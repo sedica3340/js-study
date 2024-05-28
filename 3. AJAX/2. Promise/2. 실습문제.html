@@ -49,7 +49,7 @@
             }
             .movie-list .movie .inner {
                 padding: 0px 15px;
-                margin-top: -12px;
+                margin-top: -5px;
             }
             .movie-list .movie .inner * {
                 font-size: 1.3em;
@@ -88,7 +88,7 @@
     </head>
     <body>
         <template id="single-movie">
-            <div class="movie">
+            <div class="movie" data-bs-toggle="modal" data-bs-target="#detailModal">
                 <input type="hidden" name="id" class="movie-id">
                 <div class="img-box">
                     <img src="#" alt="표지사진" />
@@ -137,7 +137,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            아바타
+                            제목
                         </h5>
                         <button
                             type="button"
@@ -150,14 +150,14 @@
                         <img
                             class="desc-image"
                             src=""
-                            alt=""
+                            alt="포스터"
                             style="
                                 width: 200px;
                                 float: left;
                                 margin-right: 20px;
                             "
                         />
-                        <p class="movie-description"></p>
+                        <p class="movie-description">내용</p>
                     </div>
                     <div class="modal-footer">
                         <button

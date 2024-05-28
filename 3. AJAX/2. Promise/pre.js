@@ -38,8 +38,8 @@ document.querySelector(".gnb").addEventListener("click", (e) => {
 });
 
 $movieList.addEventListener("click", (e) => {
+    if (!e.target.matches(".movie-list .movie *")) return;
     const $movie = e.target.closest("div.movie");
-    if (!$movie.matches(".movie")) return;
     const movieId = $movie.querySelector(".movie-id").value;
     console.log(movieId);
 
@@ -53,8 +53,10 @@ $movieList.addEventListener("click", (e) => {
 
 function renderModal(movie) {
     const $modal = document.querySelector(".modal");
-    $modal.classList.remove("fade");
+    // $modal.classList.remove("fade");
+
     $modal.querySelector(".modal-title").textContent = movie.title;
     $modal.querySelector(".modal-body img").setAttribute("src", `${movie.large_cover_image}`);
+    $modal.querySelector(".movie-description").textContent = movie.description_full;
 }
 load();
